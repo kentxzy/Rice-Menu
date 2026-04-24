@@ -1,18 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Root route - redirect to menus 
 Route::get('/', function () {
-    return redirect('/products');
-});
-
-Route::get('/', function () {
-    return view('welcome');
+    return redirect('/menus');
 });
 
 Route::get('/dashboard', function () {
@@ -28,11 +24,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('menus', MenuController::class);
-Route::resource('menus', MenuController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('payments', PaymentController::class);
-
-Route::get('/force-migrate', function () {
-    Artisan::call('migrate', ['--force' => true]);
-    return 'Database migration successful!';
-});

@@ -5,6 +5,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     return redirect('/products');
@@ -30,3 +31,8 @@ Route::resource('menus', MenuController::class);
 Route::resource('menus', MenuController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('payments', PaymentController::class);
+
+Route::get('/force-migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return 'Database migration successful!';
+});

@@ -1,11 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     return redirect('/products');

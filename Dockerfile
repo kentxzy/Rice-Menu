@@ -52,10 +52,6 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Install frontend dependencies and build assets
 RUN npm install && npm run build
 
-# RUN php artisan config:clear \
-#    && php artisan route:clear \
-#    && php artisan view:clear
-
 # Create storage symlink
 RUN php artisan storage:link || true
 
@@ -71,5 +67,5 @@ RUN php artisan migrate --force || true
 # Expose port
 EXPOSE 10000
 
-# Start Apache
-CMD php artisan config:clear && php artisan route:clear && php artisan cache:clear && apache2-foreground
+# Start Apache with cache clearing
+CMD bash -c "php artisan route:clear && php artisan config:clear && php artisan view:clear && apache2-foreground"
